@@ -1,0 +1,38 @@
+# Makefile for building linext as a shared library for Python integration
+
+CXX ?= clang++
+CFLAGS := -std=c++14 -Wall -march=native -O3 -DNDEBUG -fPIC -I/usr/local/opt/boost/include
+LDFLAGS := -pthread -L/usr/local/opt/boost/lib
+
+# Source files (excluding CUDA and main.cpp)
+SOURCES := src/exactcount.cpp src/method_exact.cpp src/common.cpp src/method_armc.cpp src/method_relaxtpa.cpp src/method_relaxtpa_loose1.cpp src/method_relaxtpa_loose2.cpp src/telescope.cpp src/tpa.cpp
+PYTHON_INTERFACE := linext_python_interface.cpp
+
+# Detect OS for library extension
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+    LIB_EXT := dylib
+    SHARED_FLAGS := -shared -undefined dynamic_lookup
+else ifeq ($(UNAME_S),Linux)
+    LIB_EXT := so
+    SHARED_FLAGS := -shared
+else
+    LIB_EXT := dll
+    SHARED_FLAGS := -shared
+endif
+
+TARGET := liblinext.$(LIB_EXT)
+
+# Build shared library
+$(TARGET): $(SOURCES) $(PYTHON_INTERFACE)
+	$(CXX) $(SHARED_FLAGS) $(CFLAGS) -I. $(SOURCES) $(PYTHON_INTERFACE) -o $(TARGET) $(LDFLAGS)
+
+# Test the library
+test: $(TARGET)
+	@echo "Testing shared library..."
+	@cd .. && python3 -c "from src.utils.linext_direct import get_linext_direct; import numpy as np; linext = get_linext_direct(); result = linext.nle(np.array([[0, 1], [0, 0]])); print(f'Test result: {result} (expected: 1)'); print('✅ C++ library working!' if result == 1 else '❌ Test failed')"
+
+clean:
+	rm -f $(TARGET)
+
+.PHONY: test clean 
