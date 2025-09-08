@@ -1,9 +1,11 @@
 # LinExt: High-Performance Linear Extension Counter
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Ubuntu-blue.svg)](https://github.com/yourusername/linext)
+> **📚 Citation**: This project is based on the original C++ implementation from the paper **"Approximate Counting of Linear Extensions in Practice"** by Topi Talvitie and Mikko Koivisto (University of Helsinki). The original C++ code is available at the [linext repository](https://github.com/ttalvitie/linext) and is licensed under the MIT License. This Python wrapper provides a convenient interface to their high-performance algorithms.
 
-A high-performance C++ library with Python interface for counting linear extensions of partially ordered sets (posets). LinExt provides **100x speedup** over pure Python implementations through optimized algorithms and hardware acceleration.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Ubuntu-blue.svg)](https://github.com/hollyli-dq/linext_hpo_python)
+
+A Python wrapper for the high-performance C++ library for counting linear extensions of partially ordered sets (posets). This project provides a convenient Python interface to the original C++ implementation by Talvitie and Koivisto, delivering **100x speedup** over pure Python implementations through their optimized algorithms and hardware acceleration.
 
 ## 🚀 Quick Start
 
@@ -153,11 +155,11 @@ benchmark_dag(your_dag, "My Custom DAG")
 
 ## 🤝 Contributing
 
-We welcome contributions! Please check our [issues](https://github.com/yourusername/linext/issues) for ways to help.
+We welcome contributions! Please check our [issues](https://github.com/hollyli-dq/linext_hpo_python/issues) for ways to help.
 
 ### Development Setup
 ```bash
-git clone https://github.com/yourusername/linext.git
+git clone https://github.com/hollyli-dq/linext_hpo_python.git
 cd linext
 # Follow installation guide
 # Make your changes
@@ -171,14 +173,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Built on advanced algorithms for linear extension counting
-- Optimized for modern hardware architectures
-- Inspired by the need for scalable poset analysis tools
+- **Original Research**: Built entirely on the foundational work of Topi Talvitie and Mikko Koivisto from the University of Helsinki
+- **C++ Implementation**: This project is a Python wrapper around their original C++ code from [https://github.com/ttalvitie/linext](https://github.com/ttalvitie/linext)
+- **Algorithm Development**: All algorithms (RelaxTPA, ARMC, exact counting, etc.) are from their original implementation
+- **Main Contribution**: This project provides Python bindings and a convenient interface to their high-performance C++ library
+- **Paper**: Based on their paper "Approximate Counting of Linear Extensions in Practice" (under review)
 
 ---
 
 ⭐ **Star this repo** if LinExt helps your research or projects!
 
-🐛 **Found a bug?** [Open an issue](https://github.com/yourusername/linext/issues)
+🐛 **Found a bug?** [Open an issue](https://github.com/hollyli-dq/linext_hpo_python/issues)
 
-💡 **Have an idea?** [Start a discussion](https://github.com/yourusername/linext/discussions) 
+💡 **Have an idea?** [Start a discussion](https://github.com/hollyli-dq/linext_hpo_python/discussions) 
